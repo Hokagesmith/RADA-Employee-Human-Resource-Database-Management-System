@@ -43,8 +43,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="/styles.css">
+  <!-- Custom Styles (Cache-busted for LAN/mobile sync) -->
+  <link rel="stylesheet" href="/styles.css?v=2.4.2">
 
   <!-- Early Dark Mode & Font Size Restore -->
   <script>
@@ -61,7 +61,7 @@
 <body class="h-full text-slate-800 antialiased font-sans selection:bg-brand-500 selection:text-white">
 
   <!-- Main App Shell -->
-  <div id="app" class="flex h-screen overflow-hidden bg-slate-100">
+  <div id="app" class="flex h-screen h-[100dvh] max-h-[100dvh] overflow-hidden bg-slate-100">
     
     <!-- LEFT SIDEBAR (hidden off-screen on mobile, slides in on toggle) -->
     <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 w-64 bg-slate-900 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800 transition-transform duration-300 z-40 -translate-x-full lg:translate-x-0">
@@ -211,66 +211,68 @@
     <div id="sidebarOverlay" class="fixed inset-0 bg-slate-900/60 z-30 lg:hidden hidden" onclick="document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('sidebarOverlay').classList.add('hidden');"></div>
 
     <!-- MAIN CONTENT WRAPPER -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+    <div class="flex-1 flex flex-col min-w-0 min-h-0 h-full overflow-hidden">
       
-      <!-- TOP NAVIGATION BAR -->
-      <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-20 flex-shrink-0 shadow-sm">
+      <!-- TOP NAVIGATION BAR (Fully responsive on all screen sizes) -->
+      <header class="h-14 sm:h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-3 sm:px-6 z-20 flex-shrink-0 shadow-sm max-w-full">
         
-        <!-- Left: Mobile Toggle & Application Identity & Page Title / Breadcrumbs -->
-        <div class="flex items-center space-x-3 sm:space-x-4">
-          <button id="mobileMenuBtn" class="text-slate-500 hover:text-slate-700 lg:hidden">
+        <!-- Left: Mobile Toggle & Brand / Title -->
+        <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+          <button id="mobileMenuBtn" class="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 lg:hidden flex items-center space-x-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition" title="Toggle Navigation Menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
+            <span class="text-[11px] font-bold hidden xs:inline">Menu</span>
           </button>
           
           <!-- Application Identity: RADA HRMS -->
-          <div class="flex items-center space-x-2 border-r border-slate-200 pr-3 mr-1">
-            <span class="px-2.5 py-1 rounded-md bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 text-white font-black text-xs sm:text-[13px] tracking-wider uppercase shadow-xs">
+          <div class="flex items-center space-x-1 sm:space-x-2 border-r border-slate-200 dark:border-slate-700 pr-2 sm:pr-3">
+            <span class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-gradient-to-r from-emerald-600 via-green-600 to-teal-700 text-white font-black text-[11px] sm:text-xs tracking-wider uppercase shadow-xs whitespace-nowrap">
               RADA HRMS
             </span>
           </div>
 
-          <div>
-            <div class="flex items-center space-x-2 text-xs text-slate-400">
-              <span class="font-bold text-slate-600">HRMS</span>
+          <div class="min-w-0">
+            <div class="hidden sm:flex items-center space-x-2 text-xs text-slate-400">
+              <span class="font-bold text-slate-600 dark:text-slate-300">HRMS</span>
               <span>/</span>
               <span id="pageBreadcrumb" class="text-slate-500 capitalize">HR Dashboard</span>
             </div>
-            <h2 id="pageTitle" class="text-xs sm:text-base font-bold text-slate-900 leading-tight">Executive Workforce Dashboard</h2>
+            <h2 id="pageTitle" class="text-xs sm:text-sm md:text-base font-bold text-slate-900 dark:text-white leading-tight truncate max-w-[130px] sm:max-w-xs md:max-w-sm lg:max-w-none">Executive Workforce Dashboard</h2>
           </div>
         </div>
 
-        <!-- Center: Global Search -->
-        <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
+        <!-- Center: Global Search (Desktop only) -->
+        <div class="hidden md:flex items-center flex-1 max-w-xs lg:max-w-md mx-3 lg:mx-6">
           <div class="relative w-full">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-            <input type="text" id="globalSearchInput" placeholder="Search employees (Yong, Shella), ID (EMP-001)..." 
-              class="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition"
+            <input type="text" id="globalSearchInput" placeholder="Search employees, ID (EMP-001)..." 
+              class="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition text-slate-800 dark:text-white"
               onkeyup="handleGlobalSearch(event)">
           </div>
         </div>
 
-        <!-- Right: Network Indicator, Notifications, Quick Actions -->
-        <div class="flex items-center space-x-3">
+        <!-- Right: Network Indicator, Notifications, Quick Actions, Theme, Role -->
+        <div class="flex items-center space-x-1.5 sm:space-x-2.5 flex-shrink-0">
           
           <!-- Network Status Pill -->
-          <button onclick="toggleNetworkModal()" id="networkStatusBadge" class="flex items-center space-x-1.5 px-2.5 py-1 status-pill-online rounded-lg text-xs font-semibold transition" title="Dual Mode: Works Offline & Online">
+          <button onclick="toggleNetworkModal()" id="networkStatusBadge" class="flex items-center space-x-1 sm:space-x-1.5 px-2 py-1 status-pill-online rounded-lg text-xs font-semibold transition" title="Dual Mode: Works Offline & Online">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span id="networkModeText">ONLINE / OFFLINE READY</span>
+            <span id="networkModeText" class="hidden xl:inline text-[11px]">ONLINE / OFFLINE READY</span>
+            <span class="hidden md:inline xl:hidden text-[11px]">ONLINE</span>
           </button>
 
           <!-- Notification Bell -->
           <div class="relative">
-            <button onclick="toggleNotifications()" class="relative p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition">
-              <i data-lucide="bell" class="w-5 h-5"></i>
+            <button onclick="toggleNotifications()" class="relative p-1.5 sm:p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition">
+              <i data-lucide="bell" class="w-4 h-4 sm:w-5 sm:h-5"></i>
               <span id="unreadNotifBadge" class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full font-bold flex items-center justify-center" style="display:none;">!</span>
             </button>
             <!-- Notifications Dropdown -->
-            <div id="notificationsDrawer" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 z-50 overflow-hidden">
-              <div class="p-3 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-                <span class="text-xs font-bold text-slate-800">Notifications</span>
+            <div id="notificationsDrawer" class="hidden absolute right-0 mt-2 w-72 sm:w-80 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 z-50 overflow-hidden">
+              <div class="p-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-950">
+                <span class="text-xs font-bold text-slate-800 dark:text-white">Notifications</span>
                 <span id="notifCountLabel" class="text-[11px] text-slate-500">0 New</span>
               </div>
-              <div id="notificationsList" class="max-h-72 overflow-y-auto text-xs divide-y divide-slate-100">
+              <div id="notificationsList" class="max-h-72 overflow-y-auto text-xs divide-y divide-slate-100 dark:divide-slate-800">
                 <div class="p-4 text-slate-400 text-center italic">No new notifications</div>
               </div>
             </div>
@@ -278,44 +280,44 @@
 
           <!-- Quick Action Dropdown -->
           <div class="relative">
-            <button onclick="toggleQuickActions()" class="flex items-center space-x-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-semibold shadow-sm transition">
+            <button onclick="toggleQuickActions()" class="flex items-center space-x-1 px-2 sm:px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-semibold shadow-sm transition">
               <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-              <span>Quick Action</span>
-              <i data-lucide="chevron-down" class="w-3 h-3 ml-0.5"></i>
+              <span class="hidden sm:inline">Quick Action</span>
+              <i data-lucide="chevron-down" class="w-3 h-3 ml-0.5 hidden sm:inline"></i>
             </button>
-            <div id="quickActionMenu" class="hidden absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-slate-100 py-1.5 z-50 text-xs">
-              <a href="#new-employee" onclick="navigate('new-employee'); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 hover:bg-green-50 hover:text-green-700">
+            <div id="quickActionMenu" class="hidden absolute right-0 mt-2 w-52 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 py-1.5 z-50 text-xs">
+              <a href="#new-employee" onclick="navigate('new-employee'); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-green-50 dark:hover:bg-slate-800 hover:text-green-700">
                 <i data-lucide="user-plus" class="w-4 h-4 mr-2.5 text-green-600"></i> Register Employee
               </a>
-              <a href="#attendance" onclick="openClockInModal(); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700">
+              <a href="#attendance" onclick="openClockInModal(); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-700">
                 <i data-lucide="clock" class="w-4 h-4 mr-2.5 text-emerald-600"></i> Clock In Staff
               </a>
-              <a href="#leave" onclick="openLeaveApplyModal(); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 hover:bg-orange-50 hover:text-orange-700">
+              <a href="#leave" onclick="openLeaveApplyModal(); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-800 hover:text-orange-700">
                 <i data-lucide="plane" class="w-4 h-4 mr-2.5 text-orange-500"></i> Submit Leave Request
               </a>
-              <a href="#reports" onclick="navigate('reports'); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 hover:bg-slate-50">
+              <a href="#reports" onclick="navigate('reports'); closeQuickActions();" class="flex items-center px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800">
                 <i data-lucide="file-spreadsheet" class="w-4 h-4 mr-2.5 text-indigo-500"></i> Generate HR Report
               </a>
             </div>
           </div>
 
           <!-- Font Size Selector (Accessible Typography) -->
-          <div class="hidden sm:flex items-center bg-slate-100 border border-slate-200 rounded-lg p-0.5 text-xs text-slate-700" title="Adjust Interface Font Size">
-            <button onclick="setFontSize('small')" id="btnFontSmall" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-600 hover:bg-white hover:text-slate-900 transition">A-</button>
-            <button onclick="setFontSize('default')" id="btnFontDefault" class="px-2 py-0.5 rounded text-xs font-black text-slate-900 bg-white shadow-xs transition">A</button>
-            <button onclick="setFontSize('large')" id="btnFontLarge" class="px-2 py-0.5 rounded text-[13px] font-bold text-slate-600 hover:bg-white hover:text-slate-900 transition">A+</button>
+          <div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-0.5 text-xs text-slate-700 dark:text-slate-300" title="Adjust Interface Font Size">
+            <button onclick="setFontSize('small')" id="btnFontSmall" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 hover:text-slate-900 transition">A-</button>
+            <button onclick="setFontSize('default')" id="btnFontDefault" class="px-2 py-0.5 rounded text-xs font-black text-slate-900 dark:white bg-white dark:bg-slate-700 shadow-xs transition">A</button>
+            <button onclick="setFontSize('large')" id="btnFontLarge" class="px-2 py-0.5 rounded text-[13px] font-bold text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-700 hover:text-slate-900 transition">A+</button>
           </div>
 
           <!-- Dark Mode / High Contrast Toggle -->
-          <button onclick="toggleTheme()" id="themeToggleBtn" title="Toggle High Contrast Dark/Light Mode" class="flex items-center space-x-1 px-2.5 py-1 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition text-xs text-slate-700">
-            <i data-lucide="moon" id="themeIcon" class="w-3.5 h-3.5 text-slate-600"></i>
-            <span id="themeLabel" class="hidden sm:inline font-medium">Dark Mode</span>
+          <button onclick="toggleTheme()" id="themeToggleBtn" title="Toggle High Contrast Dark/Light Mode" class="flex items-center space-x-1 px-2 sm:px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg transition text-xs text-slate-700 dark:text-slate-300">
+            <i data-lucide="moon" id="themeIcon" class="w-3.5 h-3.5 text-slate-600 dark:text-slate-300"></i>
+            <span id="themeLabel" class="hidden md:inline font-medium">Dark Mode</span>
           </button>
 
           <!-- Role Switcher -->
-          <button onclick="toggleRoleModal()" class="flex items-center space-x-2 px-2.5 py-1 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition text-xs">
+          <button onclick="toggleRoleModal()" class="flex items-center space-x-1.5 px-2 sm:px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg transition text-xs">
             <span class="w-2 h-2 rounded-full bg-green-600"></span>
-            <span id="topRoleBadge" class="font-bold text-slate-700">Administrator</span>
+            <span id="topRoleBadge" class="hidden md:inline font-bold text-slate-700 dark:text-slate-200">Administrator</span>
             <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5 text-slate-400"></i>
           </button>
         </div>
@@ -436,8 +438,8 @@
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
 
-  <!-- APPLICATION JAVASCRIPT (runs synchronously, DOM is ready) -->
-  <script src="/app.js"></script>
+  <!-- APPLICATION JAVASCRIPT (runs synchronously, DOM is ready - Cache-busted for LAN/mobile sync) -->
+  <script src="/app.js?v=2.4.2"></script>
 
   <!-- Online/Offline Network Indicator -->
   <script>

@@ -233,9 +233,60 @@
       "PositionID": 8,
       "GradeID": 6,
       "Salary": 200000
+    },
+    {
+      "EmployeeID": 5,
+      "EmployeeNumber": "EMP-005",
+      "FirstName": "Juliette ",
+      "LastName": "yonga",
+      "MiddleName": "smith",
+      "Nationality": "Cameroonian",
+      "Age": "",
+      "Gender": "Male",
+      "DateOfBirth": "2000-11-07",
+      "PlaceOfBirth": "bamenda",
+      "Village": "mankon",
+      "GovernmentID": "NationalID Card",
+      "GovernmentIDNumber": "1001102456",
+      "EmailAddress": "julietteyonga124@gmail.com",
+      "PhoneNumber": "674394776",
+      "OrganizationalEmail": "yongdesmond4@gmail.com",
+      "EmergencyName": "ma ju",
+      "EmergencyContact": "678514363",
+      "Address": "city chemise",
+      "HireDate": "2026-10-27",
+      "CurriculumVitae": "",
+      "Photo": "",
+      "EmploymentStatus": "Full-Time",
+      "StaffStatus": "Active",
+      "Biography": "i am a dedicated human being ",
+      "AnnualLeaveDays": 24,
+      "MaritalStatus": "Single",
+      "MethodOfExit": null,
+      "ChildrenCount": 0,
+      "CreatedDate": "2026-10-27T15:18:51.531Z",
+      "LastModifiedDate": "2026-10-27T15:18:51.531Z",
+      "DepartmentID": 8,
+      "SectionID": null,
+      "PositionID": 6,
+      "GradeID": 4,
+      "Salary": 80000
     }
   ],
-  "positionHistory": [],
+  "positionHistory": [
+    {
+      "PositionHistoryID": 1,
+      "EmployeeID": 5,
+      "PositionID": 6,
+      "DepartmentID": 8,
+      "SectionID": null,
+      "GradeID": 4,
+      "Salary": 80000,
+      "StartDate": "2026-10-27",
+      "EndDate": null,
+      "ChangeReason": "Initial Employment Appointment"
+    }
+  ],
   "users": [
     {
       "UserID": 1,
@@ -259,7 +310,7 @@
       "EmployeeID": null,
       "DepartmentID": null,
       "IsActive": true,
-      "LastLogin": "2026-10-16T09:32:51Z"
+      "LastLogin": "2026-10-27T13:50:44.917Z"
     },
     {
       "UserID": 3,
@@ -286,8 +337,37 @@
       "LastLogin": null
     }
   ],
-  "attendance": [],
-  "leaveRequests": [],
+  "attendance": [
+    {
+      "AttendanceID": 1,
+      "EmployeeID": 1,
+      "AttendanceDate": "2026-10-27",
+      "CheckInTime": "14:40",
+      "CheckOutTime": null,
+      "Status": "Late",
+      "LateMinutes": 400,
+      "EarlyDepartureMinutes": 0,
+      "Remarks": "Late arrival by 400 minutes",
+      "IsCorrection": false
+    }
+  ],
+  "leaveRequests": [
+    {
+      "LeaveRequestID": 1,
+      "EmployeeID": 1,
+      "LeaveType": "Sick Leave",
+      "StartDate": "2026-10-28",
+      "EndDate": "2026-10-30",
+      "DaysRequested": 3,
+      "Reason": "having fever and needs medical assistance",
+      "Status": "Approved",
+      "ApprovedBy": null,
+      "ApproverName": "System Administrator",
+      "DecisionDate": "2026-10-27T15:13:57.560Z",
+      "ApprovalComments": "Approved per organizational policy",
+      "DateSubmitted": "2026-10-27T13:33:05.977Z"
+    }
+  ],
   "documents": [
     {
       "DocumentID": 1,
@@ -302,6 +382,46 @@
     }
   ],
   "auditLogs": [
+    {
+      "LogID": 7,
+      "Timestamp": "2026-10-27T15:34:22.984Z",
+      "Actor": "System Administrator",
+      "Action": "REQUEST_DOCUMENT_APPROVAL",
+      "Entity": "Approval #1 for EMP-001",
+      "Details": "Submitted document approval request for CEO review."
+    },
+    {
+      "LogID": 6,
+      "Timestamp": "2026-10-27T15:18:51.533Z",
+      "Actor": "System Administrator",
+      "Action": "CREATE_EMPLOYEE",
+      "Entity": "Employee #5 (Juliette  yonga)",
+      "Details": "Registered new employee EMP-005."
+    },
+    {
+      "LogID": 5,
+      "Timestamp": "2026-10-27T15:13:57.560Z",
+      "Actor": "System Administrator",
+      "Action": "APPROVE_LEAVE",
+      "Entity": "LeaveRequest #1",
+      "Details": "Approved Sick Leave for Yong Smith.Y. Comments: Approved per organizational policy"
+    },
+    {
+      "LogID": 4,
+      "Timestamp": "2026-10-27T13:40:46.175Z",
+      "Actor": "Yong Smith.Y",
+      "Action": "CHECK_IN",
+      "Entity": "Attendance for 2026-10-27",
+      "Details": "Checked in at 14:40 (Late)"
+    },
+    {
+      "LogID": 3,
+      "Timestamp": "2026-10-27T13:33:05.978Z",
+      "Actor": "System Administrator",
+      "Action": "SUBMIT_LEAVE",
+      "Entity": "LeaveRequest #1",
+      "Details": "Submitted 3 days Sick Leave request."
+    },
     {
       "LogID": 2,
       "Timestamp": "2026-10-27T11:14:37.458Z",
@@ -319,7 +439,26 @@
       "Details": "Connected to C:\\Users\\LENOVO\\Documents\\GITHUB HRDMS\\HRMS.accdb (9 Departments, 10 Sections, 9 Positions, 7 Grades, 2 Employees)."
     }
   ],
-  "notifications": [],
+  "notifications": [
+    {
+      "NotificationID": 2,
+      "Type": "CEO_APPROVAL_REQUIRED",
+      "Title": "Document Awaiting CEO Approval",
+      "Message": "System Administrator generated an official profile dossier for Yong Smith.Y requiring CEO sign-off.",
+      "Timestamp": "2026-10-27T15:34:22.984Z",
+      "IsRead": false,
+      "TargetModule": "approvals"
+    },
+    {
+      "NotificationID": 1,
+      "Type": "LEAVE_APPROVAL",
+      "Title": "New Leave Application",
+      "Message": "Yong Smith.Y requested 3 days Sick Leave (2026-10-28 to 2026-10-30).",
+      "Timestamp": "2026-10-27T13:33:05.978Z",
+      "IsRead": true,
+      "TargetModule": "leave"
+    }
+  ],
   "ceoSettings": {
     "CeoName": "Executive Director / CEO",
     "CeoTitle": "Chief Executive Officer (CEO)",
@@ -329,5 +468,23 @@
     "AutoApplyOnApproval": true,
     "RequireCeoApprovalForProfiles": true
   },
-  "documentApprovals": []
+  "documentApprovals": [
+    {
+      "ApprovalID": 1,
+      "EmployeeID": 1,
+      "DocumentType": "Official Employee Profile Dossier",
+      "Status": "Pending",
+      "RequestedBy": "System Administrator",
+      "RequestDate": "2026-10-27T15:34:22.978Z",
+      "RequestTimestampFormatted": "27 Oct 2026, 16:34:22 GMT+1 (Cameroon)",
+      "ApprovedBy": null,
+      "ApproverTitle": null,
+      "DecisionDate": null,
+      "DecisionTimestampFormatted": null,
+      "Comments": null,
+      "VerificationToken": "RADA-AUTH-EMP-001-MVQUJ3T2",
+      "SignatureApplied": false,
+      "StampApplied": false
+    }
+  ]
 }

@@ -18,11 +18,18 @@
 }
 
 /* -------------------------------------------------------------
-   WATERMARK IMPLEMENTATION (RADA Official Logo)
+   WATERMARK & MAIN CONTENT WORKSPACE ARCHITECTURE
    ------------------------------------------------------------- */
 #contentArea {
   position: relative;
-  min-height: 100%;
+  min-height: 0;
+  flex: 1 1 0%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem !important;
+  padding-bottom: 6rem !important; /* Generous bottom spacing ensuring complete visibility of bottom cards and action buttons */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Watermark background on main content workspace */
@@ -555,20 +562,44 @@ html.dark footer span.italic {
    RESPONSIVE DESIGN & MOBILE ENHANCEMENTS (320px - 1920px)
    ------------------------------------------------------------- */
 
+/* Base Viewport & Application Shell */
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#app {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
 /* ── Tablet & Mobile: sidebar is a fixed overlay, main content fills width ── */
 @media (max-width: 1023px) {
   /* Keep flex layout but ensure main content fills full width (sidebar is fixed/out of flow) */
   #app {
     display: flex !important;
     flex-direction: column;
+    height: 100vh;
     height: 100dvh;
+    max-height: 100dvh;
     overflow: hidden;
   }
 
   /* Main content wrapper should fill the remaining height */
   #app > div.flex-1 {
-    flex: 1 1 0%;
-    min-height: 0;
+    flex: 1 1 0% !important;
+    min-height: 0 !important;
+    height: 100% !important;
     width: 100% !important;
   }
 
@@ -592,18 +623,23 @@ html.dark footer span.italic {
 
   /* Compact header on phones */
   header {
+    height: 3.5rem !important; /* 56px */
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
   }
 
-  /* Content padding compact on phones */
+  /* Content padding compact on phones with ample bottom breathing space */
   #contentArea {
     padding: 0.75rem !important;
+    padding-bottom: 7rem !important; /* Extra bottom clearance on phones */
   }
 
   /* Safe area for phones with notches/home bars */
   footer {
-    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+    height: auto !important;
+    min-height: 2.5rem !important;
+    padding-top: 0.25rem;
+    padding-bottom: calc(0.25rem + env(safe-area-inset-bottom, 0px));
   }
 
   #aiFloatingContainer {
@@ -616,12 +652,15 @@ html.dark footer span.italic {
     grid-template-columns: 1fr !important;
   }
 
-  /* Full-width tables scroll horizontally */
-  table {
-    min-width: 640px;
+  /* Full-width responsive table container */
+  .overflow-x-auto, .table-responsive {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
-  .overflow-x-auto table {
-    min-width: unset;
+  .overflow-x-auto table, .table-responsive table {
+    min-width: 600px;
   }
 
   /* Hide less critical header elements on very small screens */

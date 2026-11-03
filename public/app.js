@@ -3376,19 +3376,20 @@ async function renderSettings() {
         </div>
 
         <!-- Production Migration Recommendation Card -->
-        <div class="bg-gradient-to-tr from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-md">
-          <div class="flex items-start space-x-4">
+        <div class="bg-gradient-to-tr from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-md mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
             <div class="w-10 h-10 rounded-xl bg-blue-600/30 text-blue-400 flex items-center justify-center flex-shrink-0">
               <i data-lucide="server" class="w-5 h-5"></i>
             </div>
-            <div>
+            <div class="flex-1 min-w-0">
               <h4 class="font-bold text-sm text-white">Multi-User Production Migration Plan</h4>
               <p class="text-xs text-slate-300 mt-1 leading-relaxed">
                 Microsoft Access is suitable for local and single-server environments. For concurrent multi-station HR deployment over WAN/LAN, we recommend migrating this verified schema to PostgreSQL or Microsoft SQL Server.
               </p>
-              <div class="mt-4 flex items-center space-x-3">
-                <button onclick="showToast('Exporting SQL Server & PostgreSQL migration DDL...')" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition">
-                  Download SQL Server / PG Migration Script
+              <div class="mt-4 flex flex-wrap items-center gap-3">
+                <button onclick="showToast('Exporting SQL Server & PostgreSQL migration DDL...')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-sm transition flex items-center space-x-2">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Download SQL Server / PG Migration Script</span>
                 </button>
               </div>
             </div>
