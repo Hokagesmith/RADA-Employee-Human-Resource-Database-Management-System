@@ -18,10 +18,10 @@ The user interface and design system are modeled after modern enterprise systems
 The system integrates directly with `C:\Users\LENOVO\Documents\GITHUB HRDMS\HRMS.accdb` using the 64-bit `Microsoft.ACE.OLEDB.12.0` provider.
 
 ### Core Tables & Existing Records:
-1. **`tbl_Departments`** (9 records):
-   * Technology, Health, Peace, Agriculture, Communication, MEAL, Finance, Fundraising, Environment Protection.
-2. **`tbl_Sections`** (10 records):
-   * Systems & ICT Support, Software & Data Management, Community Health Outreach, Mediation & Peace Building, Sustainable Farming Projects, Media & Public Relations, Monitoring & Evaluation, Accounting & Payroll, Donor Relations & Grants, Climate & Natural Resources.
+1. **`tbl_Departments`** (10 records):
+   * Technology, Health, Peace, Agriculture, Communication, MEAL, Finance, Fundraising, Environment Protection, Education.
+2. **`tbl_Sections`** (12 records):
+   * Systems & ICT Support, Software & Data Management, Community Health Outreach, Mediation & Peace Building, Sustainable Farming Projects, Media & Public Relations, Monitoring & Evaluation, Accounting & Payroll, Donor Relations & Grants, Climate & Natural Resources, Basic & Secondary Education Programs, Vocational & Community Training.
 3. **`tbl_Positions`** (9 records):
    * Executive Director, HR Manager, IT Officer/Systems Administrator, Finance & Accounts Officer, MEAL Officer, Project Coordinator, Communication Officer, Health Program Assistant, Volunteer/Intern.
 4. **`tbl_Grades`** (7 records):

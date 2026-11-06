@@ -11,7 +11,8 @@ export const initialData = {
     { DepartmentID: 6, DepartmentName: "MEAL" },
     { DepartmentID: 7, DepartmentName: "Finance" },
     { DepartmentID: 8, DepartmentName: "Fundraising" },
-    { DepartmentID: 9, DepartmentName: "Enivironment Protection" }
+    { DepartmentID: 9, DepartmentName: "Enivironment Protection" },
+    { DepartmentID: 10, DepartmentName: "Education" }
   ],
   sections: [
     { SectionID: 1, DepartmentID: 1, SectionName: "Systems and ICT Support" },
@@ -23,7 +24,9 @@ export const initialData = {
     { SectionID: 7, DepartmentID: 6, SectionName: "Monitoring and Evaluation" },
     { SectionID: 8, DepartmentID: 7, SectionName: "Accounting and Payroll" },
     { SectionID: 9, DepartmentID: 8, SectionName: "Donor Relations and Grants" },
-    { SectionID: 10, DepartmentID: 9, SectionName: "Climate and National Resources" }
+    { SectionID: 10, DepartmentID: 9, SectionName: "Climate and National Resources" },
+    { SectionID: 11, DepartmentID: 10, SectionName: "Basic & Secondary Education Programs" },
+    { SectionID: 12, DepartmentID: 10, SectionName: "Vocational & Community Training" }
   ],
   positions: [
     { PositionID: 1, PositionTitle: "Executive Director" },

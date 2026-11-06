@@ -35,6 +35,10 @@
     {
       "DepartmentID": 9,
       "DepartmentName": "Enivironment Protection"
+    },
+    {
+      "DepartmentID": 10,
+      "DepartmentName": "Education"
     }
   ],
   "sections": [
@@ -87,6 +91,16 @@
       "SectionID": 10,
       "DepartmentID": 9,
       "SectionName": "Climate and National Resources"
+    },
+    {
+      "SectionID": 11,
+      "DepartmentID": 10,
+      "SectionName": "Basic & Secondary Education Programs"
+    },
+    {
+      "SectionID": 12,
+      "DepartmentID": 10,
+      "SectionName": "Vocational & Community Training"
     }
   ],
   "positions": [

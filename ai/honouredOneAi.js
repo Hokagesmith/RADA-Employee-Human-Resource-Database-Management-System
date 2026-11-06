@@ -153,6 +153,22 @@ export class HonouredOneAiService {
       return { answer, actions };
     }
 
+    // 2b. Education Department
+    if (q.includes('education') || q.includes('school') || q.includes('training') || q.includes('teachers')) {
+      const eduDept = departments.find(d => d.DepartmentName.toLowerCase().includes('education'));
+      const eduStaff = eduDept ? employees.filter(e => e.DepartmentID === eduDept.DepartmentID) : [];
+      
+      if (eduStaff.length > 0) {
+        answer = `Found **${eduStaff.length} personnel** in the **Education** department:\n\n` +
+          eduStaff.map(e => `* **${e.FirstName} ${e.LastName}** (${e.EmployeeNumber}) — *${e.PositionTitle || 'Education Officer'}* [${e.StaffStatus || 'Active'}]`).join('\n');
+      } else {
+        answer = "The **Education** department is active in the database (with 2 sub-sections: *Basic & Secondary Education Programs* and *Vocational & Community Training*). Currently 0 personnel assigned.";
+      }
+      actions.push({ label: "View Departments", navigate: "departments" });
+      actions.push({ label: "Register Staff to Education", navigate: "new-employee" });
+      return { answer, actions };
+    }
+
     // 3. Staff Currently on Leave
     if (q.includes('on leave') || q.includes('who is on leave') || q.includes('currently on leave')) {
       const activeLeaves = leaves.filter(l => 

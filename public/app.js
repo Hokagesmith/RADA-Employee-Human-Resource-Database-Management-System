@@ -28,7 +28,8 @@ const realDepartments = [
   { DepartmentID: 6, DepartmentName: "MEAL" },
   { DepartmentID: 7, DepartmentName: "Finance" },
   { DepartmentID: 8, DepartmentName: "Fundraising" },
-  { DepartmentID: 9, DepartmentName: "Enivironment Protection" }
+  { DepartmentID: 9, DepartmentName: "Enivironment Protection" },
+  { DepartmentID: 10, DepartmentName: "Education" }
 ];
 
 const realSections = [
@@ -41,7 +42,9 @@ const realSections = [
   { SectionID: 7, DepartmentID: 6, SectionName: "Monitoring and Evaluation" },
   { SectionID: 8, DepartmentID: 7, SectionName: "Accounting and Payroll" },
   { SectionID: 9, DepartmentID: 8, SectionName: "Donor Relations and Grants" },
-  { SectionID: 10, DepartmentID: 9, SectionName: "Climate and National Resources" }
+  { SectionID: 10, DepartmentID: 9, SectionName: "Climate and National Resources" },
+  { SectionID: 11, DepartmentID: 10, SectionName: "Basic & Secondary Education Programs" },
+  { SectionID: 12, DepartmentID: 10, SectionName: "Vocational & Community Training" }
 ];
 
 const realPositions = [
@@ -2179,7 +2182,7 @@ async function renderDepartments() {
             <p class="text-xs text-slate-500">Directly mapped from tbl_Departments & tbl_Sections</p>
           </div>
           <span class="text-xs px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-semibold border border-blue-200">
-            9 Registered Departments
+            ${departments.length} Registered Departments
           </span>
         </div>
 
